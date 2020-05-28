@@ -1,36 +1,22 @@
 import numpy as np
 import matplotlib as plt
-import os
 from astropy.io import fits
-import glob
+
 data = fits.getdata('/Users/bostroem/Desktop/images/hubble_img.fits')
-col1 = data[20, :]
-col2 = data[200, :]
-col3 = data[800, :]
+col1 = data[:, 20]
+col2 = data[:, 200]
+col3 = data[:, 800]
 
-plt.figure()
-plt.plot(np.arange(1024), col1,label='Column 20')
-mean = np.mean(col1)
-plt.axhline(mean, label='Mean')
-plt.legend()
-plt.title('Plot of Column 20 Values')
-plt.xlabel('Pixels')
-plt.ylabel('Intensity')
+def plotColumn(data,datalabel):
+	plt.figure()
+	plt.plot(np.arange(1024), data,label=datalabel)
+	mean = np.mean(data)
+	plt.axhline(mean, label='Mean')
+	plt.legend()
+	plt.title('Plot of Values')
+	plt.xlabel('Pixels')
+	plt.ylabel('Intensity')
 
-plt.figure()
-plt.plot(np.arange(1024), col2,label='Column 200')
-mean = np.mean(col2)
-plt.axhline(mean, label='Mean')
-plt.legend()
-plt.title('Plot of Column 200 Values')
-plt.xlabel('Pixels')
-plt.ylabel('Intensity')
-
-plt.figure()
-plt.plot(np.arange(1024), col3, label='Column 800')
-mean = np.mean(col3)
-plt.axhline(mean, label='Mean')
-plt.legend()
-plt.title('Plot of Column 800 Values')
-plt.xlabel('Pixels')
-plt.ylabel('Intensity')
+plotColumn(col1,'Column 20')
+plotColumn(col2,'Column 200')
+plotColumn(col3,'Column 800')
