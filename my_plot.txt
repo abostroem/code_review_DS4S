@@ -1,12 +1,16 @@
 import numpy as np
 import matplotlib
 import os
+
+#Importing fits files. Super useful stuff
 from astropy.io import fits
 import glob
 data = fits.getdata('/Users/bostroem/Desktop/images/hubble_img.fits')
 col1 = data[20, :]
 col2 = data[200, :]
 col3 = data[800, :]
+
+#Figure-making
 pyplot.figure()
 pyplot.plot(np.arange(1024), col1)
 mean = np.mean(col1)
